@@ -1,19 +1,21 @@
-import { Button, Grid } from "@material-ui/core";
 import * as React from "react";
-import MiniDrawer from "../../components/Drawer/MiniDrawer";
+import { useLanguage } from "../../context";
 import { Heading } from "../DarkPatterns/DarkPatterns.styled";
 import Questionaire, { AnswerButton } from "./Questionaire";
 import {
-  Question,
   QuestionnaireWrapper,
-  StyledButton,
+  TotalScore,
 } from "./QuizPage.styled";
 import json from "./quizSource";
+import jsonLt from "./quizSourceLT";
 
 const QuizPage = (): React.ReactElement => {
-  const [questions, setQuestions] = React.useState(Object.values(json));
+  const locale = useLanguage();
 
-  const [currentQuestion, setCurrentQuestion] = React.useState(questions[0]);
+  const [questions] = React.useState(
+    locale.lang === "en" ? Object.values(json) : Object.values(jsonLt)
+  );
+
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const [score, setScore] = React.useState(0);
@@ -34,27 +36,40 @@ const QuizPage = (): React.ReactElement => {
   const tryAgainClick = () => {
     setScore(0);
     setCurrentIndex(0);
-    setGameEnded(false); 
+    setGameEnded(false);
   };
 
-  return gameEnded ? (
-    <QuestionnaireWrapper>
-      <div>
-        Your score {score} / {questions.length}
-      </div>
-      <AnswerButton answer={"Try Again"} onClick={tryAgainClick}></AnswerButton>
-    </QuestionnaireWrapper>
-  ) : (
+  const {
+    buttons: {
+      tryAgain
+    },
+    quiz,
+  } = useLanguage().strings;
+
+  return (
     <React.Fragment>
-      <Heading>Quiz: How well do You recognize dark patterns?</Heading>
-      <QuestionnaireWrapper>
-        <Questionaire
-          question={questions[currentIndex].question}
-          correctAns={questions[currentIndex].correctAnswer}
-          incorrectAns={questions[currentIndex].incorrectAnswers}
-          handleAnswer={handleAnswer}
-        />
-      </QuestionnaireWrapper>
+      <Heading>{quiz.heading}</Heading>
+      {gameEnded ? (
+        <QuestionnaireWrapper>
+          <TotalScore>
+            {quiz.score} {score} / {questions.length}
+          </TotalScore>
+          <AnswerButton
+            answer={tryAgain}
+            onClick={tryAgainClick}
+          ></AnswerButton>
+        </QuestionnaireWrapper>
+      ) : (
+        <QuestionnaireWrapper>
+          <Questionaire
+            question={questions[currentIndex].question}
+            correctAns={questions[currentIndex].correctAnswer}
+            incorrectAns={questions[currentIndex].incorrectAnswers}
+            handleAnswer={handleAnswer}
+            picture={questions[currentIndex].picture ? questions[currentIndex].picture : undefined}
+          />
+        </QuestionnaireWrapper>
+      )}
     </React.Fragment>
   );
 };

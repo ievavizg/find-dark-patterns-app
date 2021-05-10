@@ -1,19 +1,36 @@
 import * as React from "react";
-import MiniDrawer from "../../components/Drawer/MiniDrawer";
+import { useLanguage } from "../../context";
 import AccordionElement from "./AccordionElement/AccordionElement";
-import { Container, Heading } from "./DarkPatterns.styled";
+import { Heading } from "./DarkPatterns.styled";
 
 const DarkPatterns = (): React.ReactElement => {
+  const {
+    patterns: {
+      heading,
+      darkPatterns,
+      purpose,
+      term,
+      termOrigin,
+      website,
+      typesBrignull,
+    },
+  } = useLanguage().strings;
+
   return (
     <React.Fragment>
-      <Heading>About Dark Patterns</Heading>
+      <Heading>{heading}</Heading>
       <div>
-        Dark Patterns are tricks used in websites and apps that make you do
-        things that you didn't mean to, like buying or signing up for something.
-        The purpose of this site is to spread awareness and to shame companies
-        that use them.
+        {darkPatterns}
       </div>
-      <h2>Types</h2>
+      <div>
+        {purpose}
+      </div>
+      <h3>{term}</h3>
+      <div>
+      {termOrigin}
+        <a href={"https://www.darkpatterns.org/"}>{website}</a>
+      </div>
+      <h2>{typesBrignull}</h2>
       <AccordionElement />
     </React.Fragment>
   );

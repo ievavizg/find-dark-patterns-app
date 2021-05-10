@@ -28,3 +28,11 @@ export const StyledButton = styled.button`
   border: 1px solid #292639;
   font-weight: 600;
 `;
+
+export const TotalScore = styled.div`
+  font-size: 3rem;
+`;
+
+export const PictureWrapper = styled.div`
+  padding: 0.5rem;
+`;

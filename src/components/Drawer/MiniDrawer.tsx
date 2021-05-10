@@ -6,24 +6,29 @@ import {
   useTheme,
   Theme,
 } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import { AddBox, Info, SportsEsports } from "@material-ui/icons";
 import { useHistory } from "react-router";
+import {
+  Button,
+  Menu,
+  MenuItem,
+  ListItemText,
+  ListItemIcon,
+  ListItem,
+  IconButton,
+  Divider,
+  List,
+  Drawer,
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  Typography,
+} from "@material-ui/core";
+import { MenuWrapper } from "./MiniDrawer.styled";
+import { useLanguage } from "../../context";
 
 const drawerWidth = 240;
 
@@ -92,9 +97,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-// const DarkPatterns = (): React.ReactElement => {
-//   return (
-
 const MiniDrawer = (): React.ReactElement => {
   const classes = useStyles();
   const theme = useTheme();
@@ -112,6 +114,34 @@ const MiniDrawer = (): React.ReactElement => {
 
   const navigateToQuiz = () => history.push("/quiz");
   const navigateToHome = () => history.push("/");
+  const navigateToRegisterPattern = () => history.push("/register-pattern");
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const languages = [
+    { name: "English", code: "en" },
+    { name: "Lietuvių", code: "lt" },
+  ];
+
+  const locale = useLanguage();
+
+  const [selected, setSelected] = React.useState<any>(
+    languages.find((item) => item.code === locale.lang)
+  );
+
+  const {
+    header: { home },
+    sidemenu: { about, quiz, register },
+  } = useLanguage().strings;
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -134,8 +164,37 @@ const MiniDrawer = (): React.ReactElement => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Find Dark Patterns
+            {home}
           </Typography>
+          <MenuWrapper>
+            <Button
+              style={{ color: "white" }}
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
+              {selected.name}
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              {languages.map((lang, key) => (
+                <MenuItem
+                  key={`${lang.name}.${key}`}
+                  onClick={() => {
+                    locale.changeLanguage(lang.code);
+                    setSelected(lang);
+                    handleClose();
+                  }}
+                >
+                  {lang.name}
+                </MenuItem>
+              ))}
+            </Menu>
+          </MenuWrapper>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -162,60 +221,46 @@ const MiniDrawer = (): React.ReactElement => {
         </div>
         <Divider />
         <List>
-          <ListItem button key={"about"} onClick={navigateToHome}>
+          <ListItem
+            button
+            key={"about"}
+            onClick={navigateToHome}
+            style={{ whiteSpace: "normal" }}
+          >
             <ListItemIcon>
               <Info />
             </ListItemIcon>
-            <ListItemText primary={"About Dark Patterns"} />
+            <ListItemText primary={about} />
           </ListItem>
-          <ListItem button key={"quiz"} onClick={navigateToQuiz}>
+          <ListItem
+            button
+            key={"quiz"}
+            onClick={navigateToQuiz}
+            style={{ whiteSpace: "normal" }}
+          >
             <ListItemIcon>
               <SportsEsports />
             </ListItemIcon>
-            <ListItemText primary={"Quiz"} />
+            <ListItemText primary={quiz} />
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem button key={"register"}>
+          <ListItem
+            button
+            key={"register"}
+            onClick={navigateToRegisterPattern}
+            style={{ whiteSpace: "normal" }}
+          >
             <ListItemIcon>
               <AddBox />
             </ListItemIcon>
-            <ListItemText primary={"Register Dark Pattern"} />
+            <ListItemText primary={register} />
           </ListItem>
         </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {/* <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography> */}
       </main>
     </div>
   );

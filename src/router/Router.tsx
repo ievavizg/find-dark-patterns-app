@@ -1,7 +1,8 @@
 import * as React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Switch } from "react-router-dom";
 import DarkPatterns from "../pages/DarkPatterns/DarkPatterns";
 import Quiz from "../pages/Quiz/QuizPage";
+import RegisterPattern from "../pages/RegisterPattern/RegisterPattern";
 
 import PrivateRoute from "./PrivateRoute";
 
@@ -12,6 +13,7 @@ const App = (): React.ReactElement => {
         <Switch>
           <PrivateRoute exact path="/" component={DarkPatterns} />
           <PrivateRoute exact path="/quiz" component={Quiz} />
+          <PrivateRoute exact path="/register-pattern" component={RegisterPattern} />
         </Switch>
       </BrowserRouter>
     </div>
