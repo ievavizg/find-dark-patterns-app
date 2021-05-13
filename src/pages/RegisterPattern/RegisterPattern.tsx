@@ -25,6 +25,7 @@ const RegisterPattern = (): React.ReactElement => {
       .send("service_qd54g3l", ApiKeys.TEMPLATE_ID, formValues, ApiKeys.USER_ID)
       .then(
         function (response) {
+          
           console.log("SUCCESS!", response.status, response.text);
         },
         function (err) {

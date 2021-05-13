@@ -9,7 +9,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import { AddBox, Info, SportsEsports } from "@material-ui/icons";
+import { AddBox, Extension, Info, SportsEsports } from "@material-ui/icons";
 import { useHistory } from "react-router";
 import {
   Button,
@@ -115,6 +115,7 @@ const MiniDrawer = (): React.ReactElement => {
   const navigateToQuiz = () => history.push("/quiz");
   const navigateToHome = () => history.push("/");
   const navigateToRegisterPattern = () => history.push("/register-pattern");
+  const navigateToExtension = () => history.push("/about-extension");
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -254,6 +255,17 @@ const MiniDrawer = (): React.ReactElement => {
           >
             <ListItemIcon>
               <AddBox />
+            </ListItemIcon>
+            <ListItemText primary={register} />
+          </ListItem>
+          <ListItem
+            button
+            key={"extension"}
+            onClick={navigateToExtension}
+            style={{ whiteSpace: "normal" }}
+          >
+            <ListItemIcon>
+              <Extension />
             </ListItemIcon>
             <ListItemText primary={register} />
           </ListItem>
