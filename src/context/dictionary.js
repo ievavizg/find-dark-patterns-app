@@ -69,9 +69,6 @@ const strings = new LocalizedStrings({
       trickQuestionsDesc: {
         main: "While filling in a form you respond to a question that tricks you into giving an answer you didn't intend. When glanced upon quickly the question appears to ask one thing, but when read carefully it asks another thing entirely.",
       },
-      testExt: {
-        heading: "Testing extension",
-      },
     },
     quiz: {
       heading: "Quiz: How well You are familiar with dark patterns?",
@@ -98,6 +95,11 @@ const strings = new LocalizedStrings({
       heading: "About Google Chrome extension ",
       name: "Find Dark Patterns",
       testBttn: "Test Extension",
+    },
+    testExt: {
+      heading: "Testing extension",
+      lastSubmit: "Last order was made 10min ago",
+      price: 'Price',
     },
   },
   lt: {
@@ -198,6 +200,8 @@ const strings = new LocalizedStrings({
     },
     testExt: {
       heading: "Plėtinio testavimas",
+      lastSubmit: "Paskutinį kartą užsakyta prieš 10min",
+      price: 'Kaina',
     },
   },
 });
