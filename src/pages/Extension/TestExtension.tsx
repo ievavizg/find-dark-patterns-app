@@ -6,6 +6,9 @@ import {
   InfoBoxWrapper,
   PictureWrapper,
   PriceWrapper,
+  HeadingWrapper,
+  InfoText,
+  StyledWrapper,
 } from "./TestExtension.styled";
 import Product from "./product.png";
 
@@ -28,8 +31,13 @@ const TestExtension = (): React.ReactElement => {
             }}
           />
         </PictureWrapper>
-        <PriceWrapper>{price}: 34,2e</PriceWrapper>
-        <InfoBoxWrapper>{lastSubmit}</InfoBoxWrapper>
+        <StyledWrapper>
+          <HeadingWrapper>The Greatest Wireless Computer Mouse</HeadingWrapper>
+          <PriceWrapper>{price}: 34,2e</PriceWrapper>
+          <InfoBoxWrapper>
+            <InfoText>{lastSubmit}</InfoText>
+          </InfoBoxWrapper>
+        </StyledWrapper>
       </Wrapper>
     </React.Fragment>
   );

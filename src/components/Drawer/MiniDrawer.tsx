@@ -140,7 +140,7 @@ const MiniDrawer = (): React.ReactElement => {
 
   const {
     header: { home },
-    sidemenu: { about, quiz, register },
+    sidemenu: { about, quiz, register, ext },
   } = useLanguage().strings;
 
   return (
@@ -267,7 +267,7 @@ const MiniDrawer = (): React.ReactElement => {
             <ListItemIcon>
               <Extension />
             </ListItemIcon>
-            <ListItemText primary={register} />
+            <ListItemText primary={ext} />
           </ListItem>
         </List>
       </Drawer>

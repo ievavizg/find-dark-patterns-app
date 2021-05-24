@@ -13,6 +13,7 @@ const strings = new LocalizedStrings({
       about: "About Dark Patterns",
       quiz: "Quiz",
       register: "Register Dark Pattern",
+      ext: "Extension",
     },
     patterns: {
       heading: "About Dark Patterns",
@@ -114,6 +115,7 @@ const strings = new LocalizedStrings({
       about: "Apie apgaulinguosius šablonus",
       quiz: "Viktorina",
       register: "Registruoti apgaulingąjį šabloną",
+      ext: "Plėtinys",
     },
     patterns: {
       heading: "Apie apgaulinguosius šablonus",

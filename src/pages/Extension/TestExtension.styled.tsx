@@ -27,14 +27,27 @@ export const Wrapper = styled.div`
 export const PictureWrapper = styled.div`
   padding: 0.5rem;
   flex: 1;
+  margin-left: 10rem;
 `;
 
-export const InfoBoxWrapper = styled.p`
+export const HeadingWrapper = styled.div`
+  padding: 2rem;
+  font-size: 2rem;
+`;
+
+export const InfoBoxWrapper = styled.div`
   background: lightgray;
   border-radius: 1rem;
   height: 5rem;
-  width: 3rem;
+  width: 18rem;
   flex: 1;
+  margin-left: 5rem;
+`;
+
+export const InfoText = styled.p`
+  color: darkblue;
+  font-size: 1.2rem;
+  padding: 0.5rem;
 `;
 
 export const H1Wrapper = styled.div`
@@ -43,6 +56,10 @@ export const H1Wrapper = styled.div`
 `;
 
 export const PriceWrapper = styled.div`
-padding: 2rem;
-font-size: 3rem;
+  padding: 2rem;
+  font-size: 1.5rem;
+`;
+
+export const StyledWrapper = styled.div`
+  margin-right: 10rem;
 `;
