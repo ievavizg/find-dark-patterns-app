@@ -26,4 +26,5 @@ export const StyledInput = styled(Input)`
   margin-bottom: 2rem;
   font-size: 1.2rem;
   padding: 1rem;
+  cursor: pointer;
 `;
